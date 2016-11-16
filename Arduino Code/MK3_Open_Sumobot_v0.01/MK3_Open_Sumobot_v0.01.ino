@@ -8,7 +8,7 @@
  */
  
 #include <NewPing.h>
-#define PING 50 //Max distance reading
+#define PING 55 //Max distance reading
   NewPing izq(9, 9, PING);  //Only 1 wire for comunication with this sensor    
   NewPing dch(8, 8, PING);  //Only 1 wire for comunication with this sensor
   NewPing fnt(7, 7, PING);  //Only 1 wire for comunication with this sensor
@@ -38,7 +38,7 @@ int front_distance = 0;
 int left_distance = 0;
 int right_distance = 0;
 
-boolean turn_direction = true;        //True for left direction and false for right direction   
+boolean turn_direction = true;        //The last movement was a turn, this is for repair the sensors orientation bug 
 boolean front_detection = false;      //True when detects an enemy
 
 unsigned long time;
@@ -92,22 +92,34 @@ void loop()
   Serial.print(" time");
   Serial.print(time);
   
-  if((front_distance < left_distance) && (front_distance < right_distance))
+  if(front_distance <= 50)
     {
     sumo_forward(150);
+    if(turn_direction = false)
+      {
+      for(cont = 0; cont <= 10; cont++)
+        {
+        delay(20);
+        /*
+         * if the line is pushed stop the loop
+         */
+        }
+      }
     front_detection = true;
-    }
-  
-  if((left_distance < front_distance) && (left_distance < right_distance)) //add states
-    {
-    sumo_left(150);
-    }
-  
-  if((right_distance < front_distance) && (right_distance < front_distance))
-    {
-    sumo_right(150);
-    }
-  
-  Serial.println(" ");
+    turn_direction = true;
+    }else
+      {
+       if((left_distance < front_distance) && (left_distance < right_distance)) //add states
+         {
+         sumo_left(150);
+         turn_direction = false;
+         }
+         
+       if((right_distance < front_distance) && (right_distance < front_distance))
+         {
+         sumo_right(150);
+         turn_direction = false;
+         }
+      }   
   }
-
+  
