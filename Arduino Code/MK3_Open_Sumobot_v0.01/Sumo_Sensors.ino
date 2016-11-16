@@ -53,3 +53,20 @@ int ir() //IR Sensor Front
     }
   return val;
   }
+
+void print_data(int data)
+  {
+  Serial.print(" ");
+  if(data < 1000)
+    {
+      if(data < 100)
+        {
+        Serial.print(" ");
+        if(data < 10)
+          {
+          Serial.print(" ");
+          }
+        }
+    }
+  Serial.print(data);  
+  }

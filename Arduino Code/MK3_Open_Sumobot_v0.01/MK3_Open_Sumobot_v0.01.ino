@@ -77,12 +77,12 @@ void loop()
   line_left = line_sensor_left_raw();
 
   Serial.print(" L ");
-  Serial.print(left_distance);
+  print_data(left_distance);
   Serial.print(" C ");
-  Serial.print(front_distance);
+  print_data(front_distance);
   Serial.print(" R ");
-  Serial.print(right_distance);
-  Serial.print(" . ");
+  print_data(right_distance);
+  
 
 
   if((front_distance < left_distance) && (front_distance < right_distance))
@@ -100,6 +100,8 @@ void loop()
     {
     sumo_right(150);
     }
+  
+  Serial.println(" ");
   
   }
 
