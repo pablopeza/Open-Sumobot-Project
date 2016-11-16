@@ -54,12 +54,12 @@ int ir() //IR Sensor Front
   return val;
   }
 
-void print_data(int data)
-  {
-  Serial.print(" ");
-  if(data < 1000)
-    {
-      if(data < 100)
+void print_data(int data)   //Function used to print properly the sensor data.
+  {                         //If the number is not big enought, the function adds blank spaces.
+  Serial.print(" ");        // bad 1 20 300     /without function
+  if(data < 1000)           // bad 100 20 1     /without function
+    {                       // well   1  20 300 /with function
+      if(data < 100)        // well 300  20   1 /with function
         {
         Serial.print(" ");
         if(data < 10)

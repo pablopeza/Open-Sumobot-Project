@@ -6,6 +6,7 @@
  * Contains NewPing.h library created by Tim Eckel - teckel@leethost.com
  * Copyright 2012 License: GNU GPL v3 http://www.gnu.org/licenses/gpl-3.0.html
  */
+ 
 #include <NewPing.h>
 #define PING 50 //Max distance reading
   NewPing izq(9, 9, PING);  //Only 1 wire for comunication with this sensor    
@@ -30,12 +31,17 @@ int line_sensor_right;
 
 int cont = 0;
 int redpin=A3;
+
 int line_left, line_right;
+
 int front_distance = 0;
 int left_distance = 0;
 int right_distance = 0;
+
 boolean turn_direction = true;        //True for left direction and false for right direction   
-boolean front_detection = false;    //True when detects an enemy
+boolean front_detection = false;      //True when detects an enemy
+
+unsigned long time;
 
  /*                                          [1]                          
   *                                        __._.__
@@ -69,6 +75,7 @@ void setup()
 
 void loop() 
   {
+  time = millis();  
   left_distance = ping_sensor_left_raw();
   front_distance = ping_sensor_center_raw();
   right_distance = ping_sensor_right_raw();
@@ -76,15 +83,15 @@ void loop()
   line_right = line_sensor_right_raw();
   line_left = line_sensor_left_raw();
 
-  Serial.print(" L ");
+  Serial.print(" L");
   print_data(left_distance);
-  Serial.print(" C ");
+  Serial.print(" C");
   print_data(front_distance);
-  Serial.print(" R ");
+  Serial.print(" R");
   print_data(right_distance);
+  Serial.print(" time");
+  Serial.print(time);
   
-
-
   if((front_distance < left_distance) && (front_distance < right_distance))
     {
     sumo_forward(150);
@@ -102,6 +109,5 @@ void loop()
     }
   
   Serial.println(" ");
-  
   }
 
