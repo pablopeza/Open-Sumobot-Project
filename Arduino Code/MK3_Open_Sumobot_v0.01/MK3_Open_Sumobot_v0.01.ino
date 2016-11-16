@@ -4,10 +4,10 @@
  * @pablopeza
  */
 #include <NewPing.h>
-#define PING 50 //Max distance
-  NewPing izq(9, 9, PING);
-  NewPing dch(8, 8, PING);
-  NewPing fnt(7, 7, PING);
+#define PING 50 //Max distance reading
+  NewPing izq(9, 9, PING);  //Only 1 wire for comunication with this sensor    
+  NewPing dch(8, 8, PING);  //Only 1 wire for comunication with this sensor
+  NewPing fnt(7, 7, PING);  //Only 1 wire for comunication with this sensor
 
 #define DISTANCIA 30
 #define DISTANCIA_IR 40
@@ -28,14 +28,18 @@ int line_sensor_right;
 int cont = 0;
 int redpin=A3;
 int line_left, line_right;
-int distance_vector[3];
-  
- /*                                    [1]                          
-  *                                  __._.__
-  *  distance_vector(0) left        |       |
-  *  distance_vector(1) center [0] <|       |> [2]
-  *  distance_vector(2) right       |       |
-  *                                  -------
+int front_distance = 0;
+int left_distance = 0;
+int right_distance = 0;
+boolean turn_direction = true;        //True for left direction and false for right direction   
+boolean front_detection = false;    //True when detects an enemy
+
+ /*                                          [1]                          
+  *                                        __._.__
+  *  left_distance      left              |       |
+  *  front_distance     center       [0] <|       |> [2]
+  *  right_distance     right             |       |
+  *                                         -------
   *  Movements available:  
   *     - sumo_forward(speed)
   *     - sumo_left(speed)
@@ -62,32 +66,35 @@ void setup()
 
 void loop() 
   {
-  distance_vector[0] = ping_sensor_left_raw();
-  distance_vector[1] = ping_sensor_center_raw();
-  distance_vector[2] = ping_sensor_right_raw();
+  left_distance = ping_sensor_left_raw();
+  front_distance = ping_sensor_center_raw();
+  right_distance = ping_sensor_right_raw();
   
   line_right = line_sensor_right_raw();
   line_left = line_sensor_left_raw();
 
   Serial.print(" L ");
-  Serial.print(distance_vector[0]);
+  Serial.print(left_distance);
   Serial.print(" C ");
-  Serial.print(distance_vector[1]);
+  Serial.print(front_distance);
   Serial.print(" R ");
-  Serial.print(distance_vector[2]);
+  Serial.print(right_distance);
   Serial.print(" . ");
 
-  if((distance_vector[1] < distance_vector[0]) && (distance_vector[1] < distance_vector[2]))
+  //Estado normal girar hasta ver algo
+
+  if((front_distance < left_distance) && (front_distance < right_distance))
     {
     sumo_forward(150);
+    front_detection = true;
     }
   
-  if((distance_vector[0] < distance_vector[1]) && (distance_vector[0] < distance_vector[2])) //add states
+  if((left_distance < front_distance) && (left_distance < right_distance)) //add states
     {
     sumo_left(150);
     }
   
-  if((distance_vector[2] < distance_vector[1]) && (distance_vector[2] < distance_vector[1]))
+  if((right_distance < front_distance) && (right_distance < front_distance))
     {
     sumo_right(150);
     }
