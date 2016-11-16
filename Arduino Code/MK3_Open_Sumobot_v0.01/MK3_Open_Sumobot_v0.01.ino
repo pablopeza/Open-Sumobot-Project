@@ -2,6 +2,9 @@
  * MK3 Open Sumobot Firmware V_0.01
  * CC license
  * @pablopeza
+ * 
+ * Contains NewPing.h library created by Tim Eckel - teckel@leethost.com
+ * Copyright 2012 License: GNU GPL v3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 #include <NewPing.h>
 #define PING 50 //Max distance reading
