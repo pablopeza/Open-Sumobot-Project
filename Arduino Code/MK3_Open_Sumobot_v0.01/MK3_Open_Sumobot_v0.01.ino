@@ -81,7 +81,6 @@ void loop()
   Serial.print(right_distance);
   Serial.print(" . ");
 
-  //Estado normal girar hasta ver algo
 
   if((front_distance < left_distance) && (front_distance < right_distance))
     {
