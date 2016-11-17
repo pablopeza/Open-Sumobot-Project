@@ -15,7 +15,7 @@
 
 #define DISTANCIA 30
 #define DISTANCIA_IR 40
-#define NUMERONEGRO 5
+#define NUMERONEGRO 300
 
 #define HG7881_IA2 6  // D10 --> Motor B Input A --> MOTOR B +
 #define HG7881_IB2 11 // D11 --> Motor B Input B --> MOTOR B -
@@ -69,6 +69,8 @@ void setup()
   pinMode( MOTOR_A_PWM, OUTPUT );
   digitalWrite( MOTOR_A_DIR, LOW );
   digitalWrite( MOTOR_A_PWM, LOW );
+
+  Serial.begin(9600);
  
   delay(1);
   }
@@ -89,37 +91,36 @@ void loop()
   print_data(front_distance);
   Serial.print(" R");
   print_data(right_distance);
-  Serial.print(" time");
+  Serial.print(" LI ");
+  print_data(line_left);
+  Serial.print(" LD ");
+  print_data(line_right);
+  Serial.print(" time ");
   Serial.print(time);
   
   if(front_distance <= 50)
     {
-    sumo_forward(150);
-    if(turn_direction = false)
-      {
-      for(cont = 0; cont <= 10; cont++)
-        {
-        delay(20);
-        /*
-         * if the line is pushed stop the loop
-         */
-        }
-      }
-    front_detection = true;
-    turn_direction = true;
+    sumo_forward(250);
+    delay(30);
     }else
       {
        if((left_distance < front_distance) && (left_distance < right_distance)) //add states
          {
-         sumo_left(150);
-         turn_direction = false;
+         sumo_left(250);
          }
          
        if((right_distance < front_distance) && (right_distance < front_distance))
          {
-         sumo_right(150);
-         turn_direction = false;
+         sumo_right(250);
          }
-      }   
+      }     
+  if((line_right < 200)||(line_left < 200))
+      {
+      sumo_backward(200);
+      delay(100);
+      sumo_left(250);
+      delay(100);
+      }       
+  Serial.println("");    
   }
   
