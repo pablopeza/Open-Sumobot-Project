@@ -8,7 +8,7 @@
 * (Optional) 1 IR SHARP distance sensor
   ## Schematic
 
-  ![electronics](Electronics\Electrical_Scheme_0.1.png)
+  ![electronics](https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Electronics/Electrical_Scheme_0.1.png)
 
 
 ## Motion
