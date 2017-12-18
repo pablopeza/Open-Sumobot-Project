@@ -8,7 +8,7 @@
 * (Optional) 1 IR SHARP distance sensor
   ## Schematic
 
-  ![](Electronics\Electrical_Scheme_0.1.png)
+  ![.](Electronics\Electrical_Scheme_0.1.png)
 
 
 ## Motion
@@ -17,4 +17,4 @@
 * 4x Wheel.stl
 
   ## 3D Printable parts
-  ![](3D_Printable_Files/image0001.png)
+  ![,](3D_Printable_Files/image0001.png)
