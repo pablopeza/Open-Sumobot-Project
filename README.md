@@ -1,6 +1,6 @@
 # Open-Sumobot-Project
 ## Post on my blog
-[![blog]Images\blogpost.png](https://pablopezasblog.wordpress.com/2016/08/04/open-sumobot-project-mk3/)
+[![blog]Images\blogpost.png](https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Images/blogpost.png)
 
 ## Electronics
 * 1x Arduino nano V3
@@ -11,7 +11,7 @@
 * (Optional) 1 IR SHARP distance sensor
   ## Schematic
 
-  ![electronics](Electronics\Electrical_Scheme_0.1.png)
+  ![electronics](https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Electronics/Electrical_Scheme_0.1.png)
 
 
 ## Motion
