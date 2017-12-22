@@ -1,7 +1,7 @@
 # Open-Sumobot-Project
 ## Post on my blog
-[![blog]https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Images/blogpost.png](https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Images/blogpost.png)
-
+![blog](https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Images/blogpost.png)
+https://pablopezasblog.wordpress.com/2016/08/04/open-sumobot-project-mk3/
 ## Electronics
 * 1x Arduino nano V3
 * 3x Hsr04 ultrasonic distance sensors
