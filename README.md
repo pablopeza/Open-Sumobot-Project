@@ -1,6 +1,6 @@
 # Open-Sumobot-Project
 ## Post on my blog
-[![blog]Images\blogpost.png](https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Images/blogpost.png)
+[![blog]https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Images/blogpost.png](https://github.com/pablopeza/Open-Sumobot-Project/blob/master/Images/blogpost.png)
 
 ## Electronics
 * 1x Arduino nano V3
